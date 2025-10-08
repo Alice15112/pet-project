@@ -1,31 +1,40 @@
-# Pet Project — Task Service (Spring Boot + Kafka + Redis + PostgreSQL)
+# 🐾 Pet Project — Spring Boot + Kafka + Redis + Prometheus + Grafana
 
-## 📘 Overview
-A demo microservice for handling tasks.  
-Each created task is stored in PostgreSQL, sent through Kafka, and cached in Redis.
-
-**Stack:**
-- Java 21, Spring Boot 3
-- PostgreSQL (JPA/Hibernate)
-- Kafka (Producer + Consumer)
-- Redis (Cache)
-- Docker Compose orchestration
-- Swagger / OpenAPI documentation
+Educational project demonstrating integration between **Spring Boot**, **Apache Kafka**, **Redis**, and **PostgreSQL**  
+with full **observability stack** (Prometheus + Grafana) and **Docker Compose** for local deployment.
 
 ---
 
-## ⚙️ Architecture
-[HTTP POST /tasks]
-↓
-TaskController → PostgreSQL
-↓
-Kafka Producer → Topic "tasks"
-↓
-Kafka Consumer → Redis Cache
-↓
-[HTTP GET /redis/tasks]
-## 🚀 Run Locally
+## 🚀 Features
+
+- ✅ REST API for simple task CRUD (Spring Boot + PostgreSQL)
+- 📨 Asynchronous message passing via Kafka (Producer + Consumer)
+- 💾 Task caching in Redis
+- 📊 Application monitoring via Prometheus & Grafana dashboards
+- 🧩 One-command startup with Docker Compose
+
+---
+
+## Stack Overview
+
+| Component | Purpose |
+|------------|----------|
+| **Spring Boot** | REST API, Kafka Producer/Consumer |
+| **PostgreSQL** | Task persistence |
+| **Kafka** | Messaging between Producer and Consumer |
+| **Redis** | Task cache storage |
+| **Prometheus** | Metrics collection from app, Kafka & Redis |
+| **Grafana** | Visualization dashboards |
+| **Kafka-UI** | Convenient Kafka topic browser |
+
+---
+
+
+## ⚙️ Setup & Run
+
+Clone the repository and launch the whole stack:
 
 ```bash
+
 docker compose up -d
 mvn spring-boot:run
