@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TaskConsumer {
     private final StringRedisTemplate redisTemplate;
+    private final TaskProcessor processor;
 
     @KafkaListener(topics = "tasks", groupId = "my-group")
     public void listen(String message){
         redisTemplate.opsForList().leftPush("tasks", message);
-        System.out.println("📥 [CONSUMER] Received from Kafka and saved to Redis: " + message);
+        processor.process(message);
+        System.out.println("\uD83D\uDCE5 [CONSUMER] Saved and processed: " + message);
     }
 }
